@@ -64,6 +64,8 @@ class GestPayCryptWS
     private $threeDLevel;
     private $testEnv;
 
+    private $paymentTypes;
+
     public function __construct()
     {
         $this->shopLogin = "";
@@ -145,6 +147,17 @@ class GestPayCryptWS
     public function getCardNumber()
     {
         return $this->cardNumber;
+    }
+
+    public function setPaymentTypes($array)
+    {
+        $this->paymentTypes = $array;
+        return $this;
+    }
+
+    public function getPaymentTypes()
+    {
+        return $this->paymentTypes;
     }
 
     public function setExpMonth($val)
@@ -562,6 +575,9 @@ class GestPayCryptWS
         }
         if (isset($this->customInfo)) {
             $params['customInfo'] = $this->getCustomInfo();
+        }
+        if (isset($this->paymentTypes)) {
+            $params['paymentTypes'] = $this->getpaymentTypes();
         }
         return $params;
     }
